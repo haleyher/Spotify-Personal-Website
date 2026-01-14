@@ -124,7 +124,7 @@
 
   .track-row {
     @apply flex items-center gap-4 p-2 rounded-md transition-all duration-200 
-           hover:bg-secondary group cursor-pointer;
+           hover:bg-secondary cursor-pointer;
   }
 
   .section-title {
