@@ -64,6 +64,12 @@ const Navigation = () => {
             Projects
           </button>
           <button 
+            onClick={() => scrollToSection('spotify')}
+            className="spotify-nav-link"
+          >
+            Spotify
+          </button>
+          <button 
             onClick={() => scrollToSection('contact')}
             className="spotify-nav-link"
           >
