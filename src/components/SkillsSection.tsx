@@ -29,10 +29,10 @@ const SkillsSection = () => {
           {/* Skills List */}
           <div className="divide-y divide-border/50">
             {skills.map((skill, index) => (
-              <div 
-                key={skill.name}
-                className="track-row grid grid-cols-12 gap-4 px-4"
-              >
+            <div 
+              key={skill.name}
+              className="track-row group grid grid-cols-12 gap-4 px-4"
+            >
                 <div className="col-span-1 text-muted-foreground flex items-center">
                   <span className="group-hover:hidden">{index + 1}</span>
                   <span className="hidden group-hover:block text-primary">▶</span>
