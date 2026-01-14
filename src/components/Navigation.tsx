@@ -29,10 +29,10 @@ const Navigation = () => {
           onClick={() => scrollToSection('hero')}
           className="text-xl font-bold text-primary hover:scale-105 transition-transform"
         >
-          ◆ Portfolio
+          ◆ Haley
         </button>
         
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           <button 
             onClick={() => scrollToSection('about')}
             className="spotify-nav-link"
@@ -44,6 +44,12 @@ const Navigation = () => {
             className="spotify-nav-link"
           >
             Experience
+          </button>
+          <button 
+            onClick={() => scrollToSection('leadership')}
+            className="spotify-nav-link"
+          >
+            Leadership
           </button>
           <button 
             onClick={() => scrollToSection('skills')}
@@ -65,12 +71,12 @@ const Navigation = () => {
           </button>
         </div>
 
-        <button 
-          onClick={() => scrollToSection('contact')}
+        <a 
+          href="mailto:haleyher@mit.edu"
           className="spotify-button text-sm py-2 px-6"
         >
-          Hire Me
-        </button>
+          Contact Me
+        </a>
       </div>
     </nav>
   );

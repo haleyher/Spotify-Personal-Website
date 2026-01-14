@@ -1,26 +1,26 @@
-import { Play } from 'lucide-react';
+import { Play, ExternalLink } from 'lucide-react';
 import project1 from '@/assets/project-1.jpg';
 import project2 from '@/assets/project-2.jpg';
 import project3 from '@/assets/project-3.jpg';
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    description: 'Full-stack marketplace with real-time inventory',
+    title: 'Landslide Detection System',
+    description: 'Social media-based detection system using LLMs to identify unreported landslides in Rio de Janeiro',
     image: project1,
-    tech: ['React', 'Node.js', 'PostgreSQL'],
+    tech: ['Python', 'OpenAI API', 'NLP', 'Geospatial'],
   },
   {
-    title: 'Analytics Dashboard',
-    description: 'Data visualization tool for SaaS metrics',
+    title: 'Image Classification Pipeline',
+    description: 'Optimized ML model for container classification achieving 12% accuracy improvement across 7.2M products',
     image: project2,
-    tech: ['TypeScript', 'D3.js', 'AWS'],
+    tech: ['MobileNet', 'EfficientNet', 'Computer Vision'],
   },
   {
-    title: 'Mobile Banking App',
-    description: 'Secure fintech application with biometrics',
+    title: 'Grant Tracking Database',
+    description: 'Automated Airtable system tracking 40+ grants with deadline alerts and funding metrics',
     image: project3,
-    tech: ['React Native', 'GraphQL', 'Redis'],
+    tech: ['Airtable', 'Automation', 'Data Management'],
   },
 ];
 
@@ -30,8 +30,9 @@ const ProjectsSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <h2 className="section-title mb-0">Featured Projects</h2>
-          <button className="text-muted-foreground text-sm font-bold hover:text-foreground transition-colors">
-            Show all
+          <button className="text-muted-foreground text-sm font-bold hover:text-foreground transition-colors flex items-center gap-1">
+            <ExternalLink className="w-4 h-4" />
+            View GitHub
           </button>
         </div>
         

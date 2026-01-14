@@ -1,3 +1,5 @@
+import { GraduationCap, Award, MapPin } from 'lucide-react';
+
 const AboutSection = () => {
   return (
     <section id="about" className="py-16 px-6">
@@ -7,36 +9,57 @@ const AboutSection = () => {
         <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-4">
             <p className="text-muted-foreground text-lg leading-relaxed">
-              I'm a passionate full-stack developer with 5+ years of experience crafting 
-              digital experiences that users love. I specialize in building scalable web 
-              applications using modern technologies.
+              I'm a passionate student at MIT studying AI and Decision-Making, with a strong focus 
+              on data science, machine learning, and social impact. I love working on projects that 
+              combine technology with meaningful real-world applications.
             </p>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              When I'm not coding, you'll find me exploring new tech, contributing to 
-              open source, or mentoring aspiring developers. I believe in writing clean, 
-              maintainable code that stands the test of time.
+              My interests span from developing ML models for disaster detection to optimizing 
+              data pipelines at scale. I'm actively involved in MIT's Hispanic and Latina 
+              communities, promoting diversity in STEM.
             </p>
           </div>
           
-          <div className="bg-card rounded-lg p-6 space-y-4">
-            <h3 className="text-xl font-bold text-primary">Quick Stats</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="text-3xl font-bold">5+</p>
-                <p className="text-muted-foreground text-sm">Years Experience</p>
+          <div className="space-y-4">
+            {/* Education Card */}
+            <div className="bg-card rounded-lg p-6 space-y-4">
+              <div className="flex items-center gap-3">
+                <GraduationCap className="w-6 h-6 text-primary" />
+                <h3 className="text-xl font-bold">Education</h3>
               </div>
               <div>
-                <p className="text-3xl font-bold">50+</p>
-                <p className="text-muted-foreground text-sm">Projects Completed</p>
+                <p className="font-semibold text-lg">Massachusetts Institute of Technology</p>
+                <p className="text-muted-foreground">BS in AI and Decision-Making</p>
+                <div className="flex items-center gap-2 text-muted-foreground text-sm mt-1">
+                  <MapPin className="w-4 h-4" />
+                  <span>Cambridge, MA</span>
+                  <span>•</span>
+                  <span>Expected May 2028</span>
+                </div>
               </div>
-              <div>
-                <p className="text-3xl font-bold">30+</p>
-                <p className="text-muted-foreground text-sm">Happy Clients</p>
+              
+              <div className="pt-2 border-t border-border">
+                <div className="flex items-center gap-2 mb-2">
+                  <Award className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-medium">Awards</span>
+                </div>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• First Year Student Award—Diversity and Culture</li>
+                  <li>• 4th Place in Bridge the Gap Hackathon</li>
+                </ul>
               </div>
-              <div>
-                <p className="text-3xl font-bold">15+</p>
-                <p className="text-muted-foreground text-sm">Technologies</p>
-              </div>
+            </div>
+            
+            {/* Coursework */}
+            <div className="flex flex-wrap gap-2">
+              {['Algorithms', 'Machine Learning', 'Computer Vision', 'Probability'].map((course) => (
+                <span 
+                  key={course}
+                  className="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full"
+                >
+                  {course}
+                </span>
+              ))}
             </div>
           </div>
         </div>
