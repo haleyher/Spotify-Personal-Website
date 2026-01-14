@@ -40,6 +40,12 @@ const Navigation = () => {
             About
           </button>
           <button 
+            onClick={() => scrollToSection('experience')}
+            className="spotify-nav-link"
+          >
+            Experience
+          </button>
+          <button 
             onClick={() => scrollToSection('skills')}
             className="spotify-nav-link"
           >
