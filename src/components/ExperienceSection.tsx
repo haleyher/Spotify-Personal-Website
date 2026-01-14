@@ -2,36 +2,28 @@ import { Building2, Calendar } from 'lucide-react';
 
 const experiences = [
   {
-    company: 'Tech Innovations Inc.',
-    role: 'Senior Full Stack Developer',
-    period: '2022 - Present',
-    duration: '2 years',
-    description: 'Leading development of scalable web applications, mentoring junior developers, and architecting cloud solutions.',
-    technologies: ['React', 'Node.js', 'AWS', 'PostgreSQL'],
+    company: 'MIT Department of Urban Studies and Planning',
+    role: 'Undergraduate Researcher',
+    period: 'Sept. 2025 - Present',
+    location: 'Cambridge, MA',
+    description: 'Conducting research on natural disasters in Brazil, developing a social media-based detection system using LLMs to identify unreported landslide events in Rio de Janeiro.',
+    technologies: ['Python', 'OpenAI API', 'NLP', 'Data Analysis'],
   },
   {
-    company: 'Digital Solutions Co.',
-    role: 'Full Stack Developer',
-    period: '2020 - 2022',
-    duration: '2 years',
-    description: 'Built and maintained multiple client-facing applications, implemented CI/CD pipelines, and optimized database performance.',
-    technologies: ['Vue.js', 'Python', 'Docker', 'MongoDB'],
+    company: 'Euromonitor International',
+    role: 'Data Science Intern',
+    period: 'Jun. 2025 - Aug. 2025',
+    location: 'Vilnius, Lithuania',
+    description: 'Optimized image classification models for container types, achieving 12% more accurate labels across 7.2M products. Conducted comparative analysis of MobileNet and EfficientNet architectures.',
+    technologies: ['Python', 'MobileNet', 'EfficientNet', 'Computer Vision'],
   },
   {
-    company: 'StartUp Labs',
-    role: 'Frontend Developer',
-    period: '2018 - 2020',
-    duration: '2 years',
-    description: 'Developed responsive user interfaces, collaborated with design teams, and integrated RESTful APIs.',
-    technologies: ['React', 'TypeScript', 'GraphQL', 'Tailwind'],
-  },
-  {
-    company: 'WebDev Agency',
-    role: 'Junior Developer',
-    period: '2017 - 2018',
-    duration: '1 year',
-    description: 'Started my career building websites and learning best practices in software development.',
-    technologies: ['JavaScript', 'HTML/CSS', 'PHP', 'MySQL'],
+    company: 'Grinding Stone Collective',
+    role: 'Impact Reporting Intern',
+    period: 'Jan. 2025 - Feb. 2025',
+    location: 'Remote',
+    description: 'Researched 40+ eligible grants from 450 prospects, built Airtable database with automated alerts, and redesigned Lean Canvas model for funding metrics.',
+    technologies: ['Airtable', 'Data Analysis', 'Grant Research'],
   },
 ];
 
@@ -39,7 +31,7 @@ const ExperienceSection = () => {
   return (
     <section id="experience" className="py-16 px-6">
       <div className="max-w-7xl mx-auto">
-        <h2 className="section-title">Experience</h2>
+        <h2 className="section-title">Professional Experience</h2>
         
         <div className="space-y-4">
           {experiences.map((exp, index) => (
@@ -64,15 +56,13 @@ const ExperienceSection = () => {
                       <div className="flex items-center gap-2 text-muted-foreground">
                         <Building2 className="w-4 h-4" />
                         <span>{exp.company}</span>
+                        <span className="text-sm">• {exp.location}</span>
                       </div>
                     </div>
                     
                     <div className="flex items-center gap-2 text-muted-foreground text-sm">
                       <Calendar className="w-4 h-4" />
                       <span>{exp.period}</span>
-                      <span className="px-2 py-0.5 bg-primary/20 text-primary rounded-full text-xs">
-                        {exp.duration}
-                      </span>
                     </div>
                   </div>
                   

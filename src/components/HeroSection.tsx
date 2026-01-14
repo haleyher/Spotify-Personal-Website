@@ -21,7 +21,7 @@ const HeroSection = () => {
           <div className="w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl flex-shrink-0 animate-fade-up">
             <img 
               src={profilePhoto} 
-              alt="Profile" 
+              alt="Haley Hernandez" 
               className="w-full h-full object-cover"
             />
           </div>
@@ -29,13 +29,13 @@ const HeroSection = () => {
           {/* Hero Content */}
           <div className="flex-1 animate-fade-up-delay-1">
             <p className="text-xs font-bold uppercase tracking-wider text-foreground mb-2">
-              Verified Developer
+              MIT Student • AI & Data Science
             </p>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-4">
-              Alex Johnson
+              Haley Hernandez
             </h1>
             <p className="text-muted-foreground text-lg mb-6">
-              Full Stack Developer • 2.5M+ lines of code • 50+ projects shipped
+              BS in AI and Decision-Making @ MIT • Class of 2028 • Data Science & ML Enthusiast
             </p>
             
             {/* Action buttons */}
@@ -43,12 +43,20 @@ const HeroSection = () => {
               <button className="spotify-play-button animate-pulse-glow">
                 <Play className="w-7 h-7 text-primary-foreground ml-1" fill="currentColor" />
               </button>
-              <button className="spotify-button-outline">
-                Follow
-              </button>
-              <button className="text-muted-foreground hover:text-foreground transition-colors">
-                •••
-              </button>
+              <a 
+                href="mailto:haleyher@mit.edu"
+                className="spotify-button-outline"
+              >
+                Contact Me
+              </a>
+              <a 
+                href="https://linkedin.com/haleyher"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                LinkedIn
+              </a>
             </div>
           </div>
         </div>
