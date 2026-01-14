@@ -1,24 +1,40 @@
+import { useEffect, useState } from 'react';
 import { Music, Headphones, Heart, ExternalLink } from 'lucide-react';
 
+interface Artist {
+  name: string;
+  image: string;
+}
+interface Track {
+  title: string;
+  artist: string;
+  duration: string;
+}
+
 const SpotifySection = () => {
-  const spotifyProfileUrl = "https://open.spotify.com/user/31p4agq7cwrgwuzws2cijavlriim";
-  
-  // Placeholder data - would be fetched from Spotify API with proper OAuth
-  const topArtists = [
-    { name: "Artist 1", image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=100&h=100&fit=crop" },
-    { name: "Artist 2", image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=100&h=100&fit=crop" },
-    { name: "Artist 3", image: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=100&h=100&fit=crop" },
-    { name: "Artist 4", image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=100&h=100&fit=crop" },
-  ];
+  const spotifyProfileUrl = 'https://open.spotify.com/user/31p4agq7cwrgwuzws2cijavlriim';
 
-  const recentTracks = [
-    { title: "Track Name", artist: "Artist Name", duration: "3:24" },
-    { title: "Another Song", artist: "Another Artist", duration: "4:12" },
-    { title: "Great Track", artist: "Cool Artist", duration: "2:58" },
-    { title: "Favorite Tune", artist: "Best Artist", duration: "3:45" },
-  ];
+  const [topArtists, setTopArtists] = useState<Artist[]>([]);
+  const [recentTracks, setRecentTracks] = useState<Track[]>([]);
+  const [topGenres, setTopGenres] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const topGenres = ["Pop", "Indie", "Electronic", "Hip-Hop", "R&B"];
+  useEffect(() => {
+    fetch('/api/spotify-summary') // <--- call your serverless endpoint
+      .then((res) => res.json())
+      .then((data) => {
+        setTopArtists(data.topArtists);
+        setRecentTracks(data.recentTracks);
+        setTopGenres(data.topGenres);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p className="text-center py-20 text-muted-foreground">Loading Spotify data…</p>;
 
   return (
     <section id="spotify" className="py-20 px-4 md:px-8 bg-card/30">
@@ -32,7 +48,7 @@ const SpotifySection = () => {
             <h2 className="text-2xl md:text-3xl font-bold">My Spotify</h2>
             <p className="text-muted-foreground text-sm">What I'm listening to</p>
           </div>
-          <a 
+          <a
             href={spotifyProfileUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -53,8 +69,8 @@ const SpotifySection = () => {
             <div className="flex gap-3 flex-wrap">
               {topArtists.map((artist, index) => (
                 <div key={index} className="flex flex-col items-center gap-1">
-                  <img 
-                    src={artist.image} 
+                  <img
+                    src={artist.image}
                     alt={artist.name}
                     className="w-14 h-14 rounded-full object-cover border-2 border-spotify/30"
                   />
@@ -62,9 +78,6 @@ const SpotifySection = () => {
                 </div>
               ))}
             </div>
-            <p className="text-xs text-muted-foreground mt-4 italic">
-              *Connect Spotify API to show real data
-            </p>
           </div>
 
           {/* Recent Tracks */}
@@ -87,48 +100,23 @@ const SpotifySection = () => {
                 </div>
               ))}
             </div>
-            <p className="text-xs text-muted-foreground mt-4 italic">
-              *Connect Spotify API to show real data
-            </p>
           </div>
 
-          {/* Top Genres & Stats */}
+          {/* Top Genres */}
           <div className="bg-card/50 rounded-lg p-6 hover:bg-card/70 transition-colors md:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <Music className="w-5 h-5 text-spotify" />
               <h3 className="font-semibold">Top Genres</h3>
             </div>
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2">
               {topGenres.map((genre, index) => (
-                <span 
-                  key={index}
-                  className="px-3 py-1 bg-spotify/20 text-spotify rounded-full text-sm font-medium"
-                >
+                <span key={index} className="px-3 py-1 bg-spotify/20 text-spotify rounded-full text-sm font-medium">
                   {genre}
                 </span>
               ))}
             </div>
-            
-            {/* Spotify Embed Placeholder */}
-            <div className="bg-background/50 rounded-lg p-4 text-center">
-              <p className="text-muted-foreground text-sm mb-2">🎵 Favorite Playlist</p>
-              <iframe 
-                src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0" 
-                width="100%" 
-                height="152" 
-                frameBorder="0" 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy"
-                className="rounded-lg"
-              />
-            </div>
           </div>
         </div>
-
-        {/* Note about integration */}
-        <p className="text-center text-muted-foreground text-xs mt-6">
-          Want to see my real listening stats? Full Spotify API integration coming soon!
-        </p>
       </div>
     </section>
   );
