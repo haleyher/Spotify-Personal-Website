@@ -5,7 +5,7 @@ const HeroSection = () => {
   return (
     <section 
       id="hero"
-      className="min-h-screen flex items-end pb-12 pt-32 relative overflow-hidden"
+      className="flex items-end pb-12 pt-48 relative overflow-hidden"
     >
       {/* Gradient background like Spotify artist page */}
       <div 
@@ -29,13 +29,13 @@ const HeroSection = () => {
           {/* Hero Content */}
           <div className="flex-1 animate-fade-up-delay-1">
             <p className="text-xs font-bold uppercase tracking-wider text-foreground mb-2">
-              MIT Student • AI & Data Science
+              AI/ML, Data Scientist 
             </p>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-4">
               Haley Hernandez
             </h1>
             <p className="text-muted-foreground text-lg mb-6">
-              BS in AI and Decision-Making @ MIT • Class of 2028 • Data Science & ML Enthusiast
+              BS in AI and Decision-Making @ MIT • Class of 2028 
             </p>
             
             {/* Action buttons */}

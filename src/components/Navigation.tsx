@@ -29,7 +29,7 @@ const Navigation = () => {
           onClick={() => scrollToSection('hero')}
           className="text-xl font-bold text-primary hover:scale-105 transition-transform"
         >
-          ◆ Haley
+          ◆ Haley Hernandez
         </button>
         
         <div className="hidden md:flex items-center gap-6">
