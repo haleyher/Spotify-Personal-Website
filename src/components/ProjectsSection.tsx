@@ -11,16 +11,16 @@ const projects = [
     tech: ['Python', 'OpenAI API', 'NLP', 'Geospatial'],
   },
   {
-    title: 'Image Classification Pipeline',
-    description: 'Optimized ML model for container classification achieving 12% accuracy improvement across 7.2M products',
+    title: 'RecycleQuest',
+    description: 'Android app promoting recycling awareness through gamification with image recognition features. Led team in Ready, Set, App competition.',
     image: project2,
-    tech: ['MobileNet', 'EfficientNet', 'Computer Vision'],
+    tech: ['React Native', 'Expo', 'Flask', 'Fast.ai'],
   },
   {
-    title: 'Grant Tracking Database',
-    description: 'Automated Airtable system tracking 40+ grants with deadline alerts and funding metrics',
+    title: 'IdeaBoard',
+    description: 'Web app simplifying project brainstorming with custom hardware integration. Built at MIT Blueprint Hackathon.',
     image: project3,
-    tech: ['Airtable', 'Automation', 'Data Management'],
+    tech: ['React', 'Bootstrap', 'ChatGPT API', 'Hardware'],
   },
 ];
 
