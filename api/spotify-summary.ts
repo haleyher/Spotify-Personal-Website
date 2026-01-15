@@ -1,6 +1,6 @@
-// src/spotify-summary.ts
-import { VercelRequest, VercelResponse } from '@vercel/node';
 import fetch from 'node-fetch';
+import 'dotenv/config';
+
 
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID!;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET!;
@@ -22,7 +22,7 @@ async function getAccessToken() {
   return data.access_token;
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+async function main() {
   try {
     const token = await getAccessToken();
 
@@ -42,7 +42,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       new Set(topArtistsData.items.flatMap((artist: any) => artist.genres))
     ).slice(0, 5);
 
-    res.status(200).json({
+    console.log({
       topArtists: topArtistsData.items.map((a: any) => ({
         name: a.name,
         image: a.images[0]?.url,
@@ -56,6 +56,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Spotify fetch failed' });
   }
 }
+
+main();
