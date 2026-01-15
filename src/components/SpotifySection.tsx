@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Music, Headphones, Heart, ExternalLink, Loader2 } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
 
 interface Artist {
   name: string;
@@ -32,13 +31,16 @@ const SpotifySection = () => {
   useEffect(() => {
     const fetchSpotifyData = async () => {
       try {
+        // Dynamically import supabase to handle cases where env vars aren't ready
+        const { supabase } = await import('@/integrations/supabase/client');
+        
         const { data: responseData, error: invokeError } = await supabase.functions.invoke('spotify-summary');
         
         if (invokeError) {
           throw new Error(invokeError.message);
         }
         
-        if (responseData.error) {
+        if (responseData?.error) {
           throw new Error(responseData.error);
         }
         
