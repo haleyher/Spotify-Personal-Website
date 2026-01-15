@@ -31,7 +31,6 @@ const SpotifySection = () => {
   useEffect(() => {
     const fetchSpotifyData = async () => {
       try {
-        // Dynamically import supabase to handle cases where env vars aren't ready
         const { supabase } = await import('@/integrations/supabase/client');
         
         const { data: responseData, error: invokeError } = await supabase.functions.invoke('spotify-summary');
