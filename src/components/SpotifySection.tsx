@@ -1,17 +1,81 @@
-import { Music, Headphones, Heart, ExternalLink } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Music, Headphones, Heart, ExternalLink, Loader2 } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+
+interface Artist {
+  name: string;
+  image: string;
+  url: string;
+}
+
+interface Track {
+  title: string;
+  artist: string;
+  duration: string;
+  image: string;
+  url: string;
+}
+
+interface SpotifyData {
+  topArtists: Artist[];
+  recentTracks: Track[];
+  topGenres: string[];
+}
 
 const SpotifySection = () => {
   const spotifyProfileUrl = 'https://open.spotify.com/user/31p4agq7cwrgwuzws2cijavlriim';
 
-  // Static placeholder data - update these with your actual favorites!
-  const topArtists = [
-    { name: 'Artist 1', emoji: '🎵' },
-    { name: 'Artist 2', emoji: '🎸' },
-    { name: 'Artist 3', emoji: '🎤' },
-    { name: 'Artist 4', emoji: '🎹' },
-  ];
+  const [data, setData] = useState<SpotifyData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const topGenres = ['Pop', 'Hip-Hop', 'R&B', 'Indie', 'Electronic'];
+  useEffect(() => {
+    const fetchSpotifyData = async () => {
+      try {
+        const { data: responseData, error: invokeError } = await supabase.functions.invoke('spotify-summary');
+        
+        if (invokeError) {
+          throw new Error(invokeError.message);
+        }
+        
+        if (responseData.error) {
+          throw new Error(responseData.error);
+        }
+        
+        setData(responseData);
+      } catch (err) {
+        console.error('Error fetching Spotify data:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load Spotify data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSpotifyData();
+  }, []);
+
+  if (loading) {
+    return (
+      <section id="spotify" className="py-20 px-4 md:px-8 bg-card/30">
+        <div className="max-w-6xl mx-auto flex items-center justify-center gap-3">
+          <Loader2 className="w-6 h-6 animate-spin text-[#1DB954]" />
+          <p className="text-muted-foreground">Loading Spotify data...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="spotify" className="py-20 px-4 md:px-8 bg-card/30">
+        <div className="max-w-6xl mx-auto text-center">
+          <p className="text-muted-foreground">Unable to load Spotify data: {error}</p>
+        </div>
+      </section>
+    );
+  }
+
+  const { topArtists = [], recentTracks = [], topGenres = [] } = data || {};
 
   return (
     <section id="spotify" className="py-20 px-4 md:px-8 bg-card/30">
@@ -37,67 +101,97 @@ const SpotifySection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Spotify Embed - Replace with your playlist/profile embed */}
-          <div className="bg-card/50 rounded-lg p-6 hover:bg-card/70 transition-colors md:col-span-2 lg:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <Headphones className="w-5 h-5 text-[#1DB954]" />
-              <h3 className="font-semibold">Now Playing</h3>
-            </div>
-            <iframe
-              style={{ borderRadius: '12px' }}
-              src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0"
-              width="100%"
-              height="352"
-              frameBorder="0"
-              allowFullScreen
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-              className="rounded-lg"
-            />
-            <p className="text-xs text-muted-foreground mt-2">
-              Replace this with your own playlist embed from Spotify
-            </p>
-          </div>
-
-          {/* Top Genres */}
+          {/* Top Artists */}
           <div className="bg-card/50 rounded-lg p-6 hover:bg-card/70 transition-colors">
             <div className="flex items-center gap-2 mb-4">
               <Heart className="w-5 h-5 text-[#1DB954]" />
-              <h3 className="font-semibold">Favorite Genres</h3>
+              <h3 className="font-semibold">Top Artists</h3>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {topGenres.map((genre, index) => (
-                <span
+            <div className="flex gap-3 flex-wrap">
+              {topArtists.map((artist, index) => (
+                <a
                   key={index}
-                  className="px-3 py-1 bg-[#1DB954]/20 text-[#1DB954] rounded-full text-sm font-medium"
+                  href={artist.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-1 group"
                 >
-                  {genre}
-                </span>
+                  {artist.image ? (
+                    <img
+                      src={artist.image}
+                      alt={artist.name}
+                      className="w-14 h-14 rounded-full object-cover border-2 border-[#1DB954]/30 group-hover:border-[#1DB954] transition-colors"
+                    />
+                  ) : (
+                    <div className="w-14 h-14 rounded-full bg-[#1DB954]/20 flex items-center justify-center">
+                      <Music className="w-6 h-6 text-[#1DB954]" />
+                    </div>
+                  )}
+                  <span className="text-xs text-muted-foreground group-hover:text-[#1DB954] truncate max-w-[60px] transition-colors">
+                    {artist.name}
+                  </span>
+                </a>
               ))}
             </div>
+          </div>
 
-            <div className="mt-6">
-              <div className="flex items-center gap-2 mb-3">
-                <Music className="w-5 h-5 text-[#1DB954]" />
-                <h3 className="font-semibold">Top Artists</h3>
-              </div>
-              <div className="space-y-2">
-                {topArtists.map((artist, index) => (
-                  <div key={index} className="flex items-center gap-3 group">
-                    <span className="text-xl">{artist.emoji}</span>
-                    <span className="text-sm font-medium group-hover:text-[#1DB954] transition-colors">
-                      {artist.name}
-                    </span>
+          {/* Recent Tracks */}
+          <div className="bg-card/50 rounded-lg p-6 hover:bg-card/70 transition-colors">
+            <div className="flex items-center gap-2 mb-4">
+              <Headphones className="w-5 h-5 text-[#1DB954]" />
+              <h3 className="font-semibold">Recently Played</h3>
+            </div>
+            <div className="space-y-3">
+              {recentTracks.map((track, index) => (
+                <a
+                  key={index}
+                  href={track.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 group"
+                >
+                  <span className="text-muted-foreground text-sm w-4">{index + 1}</span>
+                  {track.image && (
+                    <img
+                      src={track.image}
+                      alt={track.title}
+                      className="w-10 h-10 rounded object-cover"
+                    />
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium truncate group-hover:text-[#1DB954] transition-colors">
+                      {track.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground truncate">{track.artist}</p>
                   </div>
-                ))}
-              </div>
+                  <span className="text-xs text-muted-foreground">{track.duration}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Top Genres */}
+          <div className="bg-card/50 rounded-lg p-6 hover:bg-card/70 transition-colors md:col-span-2 lg:col-span-1">
+            <div className="flex items-center gap-2 mb-4">
+              <Music className="w-5 h-5 text-[#1DB954]" />
+              <h3 className="font-semibold">Top Genres</h3>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {topGenres.length > 0 ? (
+                topGenres.map((genre, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 bg-[#1DB954]/20 text-[#1DB954] rounded-full text-sm font-medium"
+                  >
+                    {genre}
+                  </span>
+                ))
+              ) : (
+                <p className="text-sm text-muted-foreground">No genre data available</p>
+              )}
             </div>
           </div>
         </div>
-
-        <p className="text-center text-muted-foreground text-sm mt-6">
-          💡 Tip: Update the playlist embed above with your own Spotify playlist URL!
-        </p>
       </div>
     </section>
   );
