@@ -31,13 +31,21 @@ const SpotifySection = () => {
   useEffect(() => {
     const fetchSpotifyData = async () => {
       try {
-        const { supabase } = await import('@/integrations/supabase/client');
+        const response = await fetch(
+          'https://qqicewpqgnbuurzavdwt.supabase.co/functions/v1/spotify-summary',
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
         
-        const { data: responseData, error: invokeError } = await supabase.functions.invoke('spotify-summary');
-        
-        if (invokeError) {
-          throw new Error(invokeError.message);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
+        
+        const responseData = await response.json();
         
         if (responseData?.error) {
           throw new Error(responseData.error);
