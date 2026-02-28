@@ -3,6 +3,7 @@ const programs = [
   'Susquehanna Discovery Day',
   'Liberty Mutual Women in Tech',
   'D.E. Shaw Connect NYC',
+  'Bloomberg Women in Data Forum'
 ];
 
 const interests = [
