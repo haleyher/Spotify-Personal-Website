@@ -1,8 +1,10 @@
 const coursework = [
-  'Algorithms',
-  'Machine Learning',
-  'Computer Vision',
-  'Probability',
+  'Intro to Algorithms',
+  'Intro to Machine Learning',
+  'Intro to Computer Vision',
+  'Probability and Random Variables',
+  'Fundamentals of Programming', 
+  'Intro to Linguistics',
 ];
 
 const CourseworkSection = () => {

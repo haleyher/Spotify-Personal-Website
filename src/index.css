@@ -167,3 +167,7 @@
     transform: translateY(0);
   }
 }
+
+#lovable-badge {
+  display: none !important;
+}
