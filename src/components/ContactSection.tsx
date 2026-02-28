@@ -55,25 +55,6 @@ const ContactSection = () => {
           </a>
         </div>
         
-        {/* Programs */}
-        <div className="mt-12 pt-8 border-t border-border">
-          <h3 className="text-sm font-bold text-muted-foreground mb-4">PROGRAMS & SUMMITS</h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {[
-              'Goldman Sachs Possibilities Summit',
-              'Susquehanna Discovery Day',
-              'Liberty Mutual Women in Tech',
-              'D.E. Shaw Connect NYC',
-            ].map((program) => (
-              <span 
-                key={program}
-                className="px-3 py-1 bg-card text-muted-foreground text-sm rounded-full"
-              >
-                {program}
-              </span>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
