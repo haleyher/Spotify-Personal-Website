@@ -1,16 +1,16 @@
 import { Clock } from 'lucide-react';
 
 const skills = [
-  { name: 'Python', category: 'Language', popularity: 95 },
-  { name: 'JavaScript / TypeScript', category: 'Language', popularity: 90 },
-  { name: 'React', category: 'Framework', popularity: 88 },
-  { name: 'SQL', category: 'Database', popularity: 85 },
-  { name: 'Machine Learning', category: 'AI/ML', popularity: 92 },
-  { name: 'HTML/CSS', category: 'Web', popularity: 90 },
-  { name: 'Java', category: 'Language', popularity: 80 },
-  { name: 'R / MATLAB / Julia', category: 'Data Science', popularity: 78 },
-  { name: 'Google Cloud Tools', category: 'Cloud', popularity: 75 },
-  { name: 'LaTeX', category: 'Documentation', popularity: 82 },
+  { name: 'Python', category: 'Language', popularity: 75 },
+  { name: 'Machine Learning', category: 'AI/ML', popularity: 70 },
+  { name: 'HTML/CSS', category: 'Web', popularity: 65 },
+  { name: 'LaTeX', category: 'Documentation', popularity: 65 },
+  { name: 'JavaScript / TypeScript', category: 'Language', popularity: 60 },
+  { name: 'Java', category: 'Language', popularity: 60 },
+  { name: 'React', category: 'Framework', popularity: 55 },
+  { name: 'Google Cloud Tools', category: 'Cloud', popularity: 50 },
+  { name: 'SQL', category: 'Database', popularity: 45 },
+  { name: 'R / MATLAB / Julia', category: 'Data Science', popularity: 40 },
 ];
 
 const SkillsSection = () => {
