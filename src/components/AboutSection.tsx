@@ -50,17 +50,6 @@ const AboutSection = () => {
               </div>
             </div>
             
-            {/* Coursework */}
-            <div className="flex flex-wrap gap-2">
-              {['Algorithms', 'Machine Learning', 'Computer Vision', 'Probability'].map((course) => (
-                <span 
-                  key={course}
-                  className="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full"
-                >
-                  {course}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
       </div>
