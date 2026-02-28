@@ -50,7 +50,7 @@ serve(async (req) => {
 
     // Fetch top artists
     const topArtistsResp = await fetch(
-      'https://api.spotify.com/v1/me/top/artists?limit=4&time_range=short_term',
+      'https://api.spotify.com/v1/me/top/artists?limit=10&time_range=short_term',
       { headers: { Authorization: `Bearer ${token}` } }
     );
     const topArtistsData = await topArtistsResp.json();
@@ -68,7 +68,7 @@ serve(async (req) => {
     const topGenres = topArtistsData.items 
       ? Array.from(
           new Set(topArtistsData.items.flatMap((artist: any) => artist.genres))
-        ).slice(0, 5)
+        ).slice(0, 10)
       : [];
 
     const response = {
