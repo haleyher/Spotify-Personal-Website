@@ -60,20 +60,6 @@ const SkillsSection = () => {
           </div>
         </div>
         
-        {/* Interests Section */}
-        <div className="mt-8">
-          <h3 className="text-lg font-bold mb-4 text-muted-foreground">Interests</h3>
-          <div className="flex flex-wrap gap-3">
-            {['Data Science', 'Artificial Intelligence', 'Machine Learning', 'Social Impact'].map((interest) => (
-              <span 
-                key={interest}
-                className="px-4 py-2 bg-primary/20 text-primary rounded-full font-medium"
-              >
-                {interest}
-              </span>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
